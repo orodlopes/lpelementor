@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <h1>Dê prova de autoria à sua criação em minutos.</h1>
+      <p>Registre suas ideias com carimbo de tempo, hash verificável e certificado para respaldo jurídico. Sem copiar visual de terceiros.</p>
+      <a class="btn" href="{{ url_for('protect_creation') }}">Proteger criação</a>
+    </div>
+    <div class="panel">
+      <h3>O que você ganha</h3>
+      <ul>
+        <li>Rastro técnico confiável</li>
+        <li>Histórico de registros</li>
+        <li>Validação online do certificado</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="certificado">
+    <h2>Certificação válida como evidência digital</h2>
+    <div class="grid">
+      <article class="panel"><h3>ID único</h3><p>Código verificável por consulta pública.</p></article>
+      <article class="panel"><h3>Hash criptográfico</h3><p>Integridade do arquivo original.</p></article>
+      <article class="panel"><h3>Data e hora UTC</h3><p>Registro cronológico confiável.</p></article>
+    </div>
+  </section>
+
+  <section id="planos">
+    <h2>Planos com 10% de desconto</h2>
+    <div class="grid pricing">
+      {% for name, p in prices.items() %}
+      <article class="panel">
+        <h3>{{ name }}</h3>
+        <p class="old">de {{ brl(p.old) }}</p>
+        <p class="new">{{ brl(p.new) }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section id="faq" class="panel">
+    <h2>FAQ</h2>
+    <p><strong>Tem banco de dados?</strong> Sim, SQLite pronto para produção pequena e fácil migração para Postgres.</p>
+    <p><strong>Concluir abre Stripe?</strong> Sim, ao enviar o formulário de proteção o usuário é redirecionado para checkout Stripe.</p>
+  </section>
+</main>
+{% endblock %}

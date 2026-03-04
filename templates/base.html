@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro Próprio</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+  <header class="wrap nav">
+    <a class="logo" href="{{ url_for('home') }}">Registro Próprio</a>
+    <nav>
+      <a href="{{ url_for('home') }}#certificado">Certificado</a>
+      <a href="{{ url_for('home') }}#planos">Planos</a>
+      <a href="{{ url_for('home') }}#faq">FAQ</a>
+      <a href="{{ url_for('protect_creation') }}">Proteja sua criação</a>
+      {% if current_user %}
+      <a href="{{ url_for('logout') }}">Sair</a>
+      {% else %}
+      <a href="{{ url_for('login') }}">Entrar</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="wrap flashes">
+        {% for message in messages %}<p>{{ message }}</p>{% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+
+  <footer>
+    <div class="wrap">
+      <h3>Feito para criadores independentes.</h3>
+      <p>One-page com identidade própria, banco de dados, login social e Stripe.</p>
+    </div>
+  </footer>
+</body>
+</html>
