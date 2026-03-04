@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="wrap form-page">
+  <h1>Proteja sua criação</h1>
+  <form method="post" class="form">
+    <input type="email" name="email" value="{{ session.get('user_email','') }}" placeholder="E-mail" required />
+    <input type="text" name="file_name" placeholder="Nome do arquivo" required />
+    <label><input type="checkbox" name="backup"/> Fazer backup do arquivo original</label>
+    <select name="language"><option value="pt-BR">Português (BR)</option><option value="en-US">English (US)</option></select>
+    <input type="text" name="title" placeholder="Título da criação" required />
+    <textarea name="description" placeholder="Descrição"></textarea>
+    <input type="text" name="author_name" placeholder="Nome do autor" required />
+    <input type="text" name="author_doc" placeholder="Documento do autor" required />
+    <input type="text" name="owner_name" placeholder="Nome do titular" required />
+    <input type="text" name="owner_doc" placeholder="Documento do titular" required />
+    <input type="number" name="owner_share" min="1" max="100" value="100" required />
+    <select name="plan">
+      {% for name, p in prices.items() %}
+      <option value="{{ name }}">{{ name }} — {{ brl(p.new) }}</option>
+      {% endfor %}
+    </select>
+    <div class="actions">
+      <a href="{{ url_for('home') }}" class="btn ghost">Cancelar e voltar</a>
+      <button class="btn" type="submit">Concluir</button>
+    </div>
+  </form>
+</main>
+{% endblock %}

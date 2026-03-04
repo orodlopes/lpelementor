@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="wrap form-page">
+  <h1>Entrar</h1>
+  <form method="post" class="form">
+    <input type="email" name="email" placeholder="E-mail" required />
+    <input type="password" name="password" placeholder="Senha" required />
+    <button class="btn" type="submit">Entrar com e-mail</button>
+  </form>
+  <a class="btn ghost" href="{{ url_for('google_login') }}">Entrar com Google</a>
+  <p>Não tem conta? <a href="{{ url_for('register') }}">Criar conta</a></p>
+</main>
+{% endblock %}
